@@ -1,0 +1,2 @@
+module Activator
+end
