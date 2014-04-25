@@ -3,7 +3,6 @@ module Activator
 
   included do
     after_save :deactivate_others
-
   end
 
   module ClassMethods
@@ -25,6 +24,7 @@ module Activator
       end
     end
 
+    private
     def activator_search_item
       find_by(:"#{used_activator_field}" => true)
     end
