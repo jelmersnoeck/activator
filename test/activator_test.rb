@@ -29,4 +29,22 @@ class ActivatorTest < ActiveSupport::TestCase
     assert project1.reload.active?
     refute project2.reload.active?
   end
+
+  test 'it shouldnt have an active class method if its not an activator' do
+    assert_raise NoMethodError do
+      User.active
+    end
+  end
+
+  test 'it shouldnt have deactivation methods if not an activator' do
+    user = User.create
+
+    assert_raise NoMethodError do
+      user.deactivate
+    end
+
+    assert_raise NoMethodError do
+      user.deactivate_others
+    end
+  end
 end

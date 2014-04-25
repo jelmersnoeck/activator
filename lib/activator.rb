@@ -2,7 +2,6 @@ module Activator
   extend ActiveSupport::Concern
 
   included do
-    after_save :deactivate_others
   end
 
   module ClassMethods
@@ -11,6 +10,7 @@ module Activator
       # active elements.
       self.extend(ActivationMethods)
       self.send(:include, InstanceMethods)
+      self.send(:after_save, :deactivate_others)
     end
 
     module ActivationMethods
