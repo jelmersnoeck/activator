@@ -7,11 +7,11 @@ records are `inactive`? Activator is the gem you need.
 ## Setup
 
 For now, the gem only works with one field, namely `active`. To use the gem,
-simply let an object `act_as_activator`.
+simply include the module `Activator`.
 
 ```ruby
 class Object < ActiveRecord::Base
-  act_as_activator
+  include Activator
 end
 ```
 

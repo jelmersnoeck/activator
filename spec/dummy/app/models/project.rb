@@ -1,3 +1,3 @@
 class Project < ActiveRecord::Base
-  act_as_activator
+  include Activator
 end
