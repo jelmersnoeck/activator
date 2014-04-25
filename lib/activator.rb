@@ -13,13 +13,13 @@ module Activator
     end
   end
 
-  def deactivate
+  def deactivate!
     self.update_attributes(active: false)
   end
 
   def deactivate_others
     return unless self.try(:active?)
     self.class.where('id <> :id', id: self.id).where(active: true).
-      map(&:deactivate)
+      map(&:deactivate!)
   end
 end
