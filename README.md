@@ -1,4 +1,4 @@
-# Activator
+# Activator [![Build Status](https://travis-ci.org/jelmersnoeck/activator.svg?branch=master)](https://travis-ci.org/jelmersnoeck/activator)
 
 Ever needed to mark a record as `active` in your application while all the other
 records are `inactive`? Activator is the gem you need.
