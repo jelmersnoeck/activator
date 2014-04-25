@@ -35,7 +35,7 @@ second.active #false
 ```
 
 ## Available methods
-### Object#deactivate
+### Object#deactivate!
 Deactivate a single object. This will simply set the activator field to false.
 
 ### Object#deactivate_others
