@@ -2,5 +2,5 @@ language: ruby
 rvm:
   - 2.0.0
 before_script:
-  - cd test/dummy && bundle exec rake db:migrate db:test:prepare && cd ../..
+  - cd spec/dummy && bundle exec rake db:migrate db:test:prepare && cd ../..
 script: 'bundle exec rspec spec'
