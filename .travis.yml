@@ -3,3 +3,5 @@ rvm:
   - 2.0.0
 services:
   - sqlite3
+before_script:
+  - cd test/dummy && rails db:migrate && rails db:test:prepare
