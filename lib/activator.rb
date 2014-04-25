@@ -1,5 +1,3 @@
-require 'activator/railtie' if defined?(Rails)
-
 module Activator
   extend ActiveSupport::Concern
 
@@ -18,7 +16,7 @@ module Activator
   end
 
   def deactivate_others
-    return unless self.try(:active?)
+    return unless self.active?
     self.class.where('id <> :id', id: self.id).where(active: true).
       map(&:deactivate!)
   end
