@@ -6,12 +6,12 @@ records are `inactive`? Activator is the gem you need.
 # How to use?
 ## Setup
 
-Simply say which field in your model is the `Activator` field, the gem will do
-the rest.
+For now, the gem only works with one field, namely `active`. To use the gem,
+simply let an object `act_as_activator`.
 
 ```ruby
 class Object < ActiveRecord::Base
-  activator :active
+  act_as_activator
 end
 ```
 
