@@ -6,19 +6,30 @@ module Activator
   end
 
   module ClassMethods
-    def active
-      find_by(active: true)
+    def act_as_activator
+      # If we don't activate a field, we don't need a class method to find the
+      # active elements.
+      self.extend(ActivationMethods)
+      self.send(:include, InstanceMethods)
+    end
+
+    module ActivationMethods
+      def active
+        find_by(active: true)
+      end
     end
   end
 
-  def deactivate
-    self.update_attributes(active: false)
-  end
+  module InstanceMethods
+    def deactivate
+      self.update_attributes(active: false)
+    end
 
-  def deactivate_others
-    return unless self.active?
-    self.class.where('id <> :id', id: self.id).where(active: true).
-      map(&:deactivate)
+    def deactivate_others
+      return unless self.active?
+      self.class.where('id <> :id', id: self.id).where(active: true).
+        map(&:deactivate)
+    end
   end
 end
 
