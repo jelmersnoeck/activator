@@ -34,14 +34,33 @@ first.active # true
 second.active #false
 ```
 
-## Available methods
-### Object#deactivate!
-Deactivate a single object. This will simply set the activator field to false.
+### Activator field
+There's an option to set the field which activator applies to. By default this
+will be the `active` field.
 
-### Object#deactivate_others
-This will deactivate all the other objects if the current object is marked as
-active. It will exclude itself from the list of records to deactivate.
+To use another field, you can use the `activator_field` option.
+
+```ruby
+class Object
+  include Activator
+  activator_field :default
+end
+```
+
+This will make `Object.default` available instead of `Object.active` to get your
+- in this case - default field.
+
+```ruby
+object = Object.create(default: true)
+Object.default # object
+```
+
+## Available methods
+### Object#activator_deactivate!
+Deactivate a single object. This will simply set the activator field to false.
 
 ### Object.active
 Get the current active object. This will only fetch one result as you should
 only have one active object at a time.
+
+Note: this method name will change if you use the `activator_field` option.

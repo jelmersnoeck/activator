@@ -6,18 +6,43 @@ module Activator
   end
 
   module ClassMethods
-    def active
-      find_by(active: true)
+    @@used_activator_field = :active
+
+    def activator_field(name)
+      @@used_activator_field = name.to_sym
+    end
+
+    def used_activator_field
+      @@used_activator_field
+    end
+
+    def method_missing(name, *args)
+      if name == used_activator_field
+        activator_search_item
+      else
+        super
+      end
+    end
+
+    private
+    def activator_search_item
+      find_by(:"#{used_activator_field}" => true)
     end
   end
 
-  def deactivate!
-    self.update_attributes(active: false)
+  def activator_deactivate!
+    self.update_attributes(:"#{activator_field}" => false)
   end
 
+  private
   def deactivate_others
-    return unless self.active?
-    self.class.where('id <> :id', id: self.id).where(active: true).
-      map(&:deactivate!)
+    return unless self.send("#{activator_field}?".to_sym)
+    self.class.where('id <> :id', id: self.id).
+      where(:"#{activator_field}" => true).
+      map(&:activator_deactivate!)
+  end
+
+  def activator_field
+    self.class.used_activator_field
   end
 end
