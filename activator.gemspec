@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Activator::VERSION
   s.authors     = ["Jelmer Snoeck"]
   s.email       = ["jelmer@siphoc.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/jelmersnoeck/activator"
   s.summary     = "Mark one model as active"
   s.description = "Mark one model as active and automatically deactivate the others."
 
