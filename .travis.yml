@@ -4,4 +4,4 @@ rvm:
 services:
   - sqlite3
 before_script:
-  - cd test/dummy && rails db:migrate && rails db:test:prepare
+  - cd test/dummy && bundle exec rake db:migrate db:test:prepare
