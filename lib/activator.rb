@@ -1,3 +1,5 @@
+require 'activator/railtie' if defined?(Rails)
+
 module Activator
   extend ActiveSupport::Concern
 
@@ -32,5 +34,3 @@ module Activator
     end
   end
 end
-
-ActiveRecord::Base.send :include, Activator
