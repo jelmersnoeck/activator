@@ -6,8 +6,14 @@ module Activator
   end
 
   module ClassMethods
-    def active
-      find_by(active: true)
+    @@used_activator_field = :active
+
+    def activator_field(name)
+      @@used_activator_field = name
+    end
+
+    define_method(@@used_activator_field.to_sym) do ||
+      find_by("#{@@used_activator_field} = ?", true)
     end
   end
 
