@@ -3,17 +3,16 @@ module Activator
 
   included do
     after_save :deactivate_others
+    activator_field :active
   end
 
   module ClassMethods
-    @@used_activator_field = :active
-
     def activator_field(name)
-      @@used_activator_field = name.to_sym
+      @used_activator_field = name.to_sym
     end
 
     def used_activator_field
-      @@used_activator_field
+      @used_activator_field
     end
 
     def method_missing(name, *args)
