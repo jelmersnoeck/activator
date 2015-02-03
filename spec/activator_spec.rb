@@ -50,6 +50,10 @@ describe Activator do
 
         Language.default.should eq language
       end
+
+      it "should respond to the default method" do
+        Language.respond_to?(:default).should be true
+      end
     end
 
     context 'overwriting defaults' do
@@ -71,7 +75,6 @@ describe Activator do
         language2.reload.default?.should be_false
       end
     end
-
   end
 
 end

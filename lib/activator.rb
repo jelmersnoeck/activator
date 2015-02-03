@@ -23,6 +23,14 @@ module Activator
       end
     end
 
+    def respond_to?(name, include_private = false)
+      if name == used_activator_field
+        true
+      else
+        super
+      end
+    end
+
     private
     def activator_search_item
       find_by(:"#{used_activator_field}" => true)
